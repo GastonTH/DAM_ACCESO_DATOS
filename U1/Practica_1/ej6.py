@@ -32,13 +32,42 @@ def rot13(fichero_origen, fichero_destino):
             else:
                 fichero_destino.write(letra)
 
+def decrypt(fichero_origen, fichero_destino):
+
+    letra_encrypt = ""
+
+    for linea in fichero_origen:
+
+        for letra in linea:
+            if ascii_letters.__contains__(letra):
+                
+                if letra != " " and letra and letra  != "\n": 
+                #saber si es mayuscula o minuscula
+                    if letra.islower(): #si la letra es minuscula
+                        #guardarme el numero de la letra +13 % 26 (abecedario)
+                        letra_encrypt = (ascii_lowercase.index(letra) - 13) % 26
+                        fichero_destino.write(ascii_lowercase[letra_encrypt])
+
+                    else:
+                        letra_encrypt = (ascii_uppercase.index(letra) - 13) % 26
+                        fichero_destino.write(ascii_uppercase[letra_encrypt])
+                
+                else:
+                    fichero_destino.write(" ")
+
+            else:
+                fichero_destino.write(letra)
 
 nombre_fichero = "fundacion.txt"
 
+#encruiptar
 destino = open("encrypted_fundación.txt", "w", encoding="utf8")
 archivo = open(nombre_fichero, encoding="utf8")
-
 rot13(archivo, destino)
-
 archivo.close()
 destino.close()
+#desencriptar
+to_decrypt = open("encrypted_fundación.txt", encoding="utf8")
+to_decrypt_result = open("decrypt13.txt", "w", encoding="utf8")
+decrypt(to_decrypt, to_decrypt_result)
+to_decrypt.close()

@@ -4,4 +4,4 @@ print(ascii_letters.__contains__("'"), ascii_letters.__contains__("á"))
 
 letra = "a"
 
-print(letra.isupper())
+print(letra.islower())
