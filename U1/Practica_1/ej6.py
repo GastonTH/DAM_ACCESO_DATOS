@@ -13,21 +13,24 @@ def rot13(fichero_origen, fichero_destino):
     for linea in fichero_origen:
 
         for letra in linea:
-            if letra != " " and letra and letra  != "\n": 
+            if ascii_letters.__contains__(letra):
+                
+                if letra != " " and letra and letra  != "\n": 
                 #saber si es mayuscula o minuscula
-                if letra.lower(): #si la letra es minuscula
-                    #guardarme el numero de la letra +13 % 26 (abecedario)
-                    letra_encrypt = (ascii_lowercase.index(letra) + 13) % 26
+                    if letra.islower(): #si la letra es minuscula
+                        #guardarme el numero de la letra +13 % 26 (abecedario)
+                        letra_encrypt = (ascii_lowercase.index(letra) + 13) % 26
+                        fichero_destino.write(ascii_lowercase[letra_encrypt])
 
-                    fichero_destino.write(ascii_lowercase[letra_encrypt])
+                    else:
+                        letra_encrypt = (ascii_uppercase.index(letra) + 13) % 26
+                        fichero_destino.write(ascii_uppercase[letra_encrypt])
+                
                 else:
-                    letra_encrypt = (ascii_lowercase.index(letra) + 13) % 26
-
-                    fichero_destino.write(ascii_uppercase[letra_encrypt])
-                print(letra_encrypt)
+                    fichero_destino.write(" ")
 
             else:
-                fichero_destino.write(" ")
+                fichero_destino.write(letra)
 
 
 nombre_fichero = "fundacion.txt"
