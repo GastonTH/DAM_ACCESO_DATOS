@@ -3,8 +3,6 @@ imprima por pantalla cuántas líneas, cuantas palabras y cuántos caracteres co
 archivo.
 """
 
-import csv
-
 def wc(fichero):
 
     suma_caracteres = 0
